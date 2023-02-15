@@ -12,19 +12,24 @@ class Hero:
         self.__hp = kwargs["hp"]
         self.__attack = kwargs["attack"]
         self.__deffense = kwargs["deffense"]
-        self.__crit_rate = kwargs["crit_rate"]
+        self.__crit_rate   = kwargs["crit_rate"]
         self.__crit_damage = kwargs["crit_damage"]
-        self.__resistance = kwargs["resistance"]
-        self.__accuracy = kwargs["accuracy"]
+        self.__resistance   = kwargs["resistance"]
+        self.__accuracy   = kwargs["accuracy"]
 
         """Текущие показатели"""
         self.current_hp = kwargs["hp"]
         self.current_attack = kwargs["attack"]
         self.current_deffense = kwargs["deffense"]
+        self.current_crit_rate   =  kwargs["crit_rate"] 
+        self.current_crit_damage =  kwargs["crit_damage"]
+        self.current_resistance  =  kwargs["resistance"]
+        self.current_accuracy    =  kwargs["accuracy"]
         self.bonuces = []
         self.penalty = []
         self.aura_influence = None
         self.status = "Alive"
+
 
         """Способности"""
         self.skills: list[Skill] = []
@@ -34,10 +39,6 @@ class Hero:
         target.accept_skill(skill)
 
     def accept_skill(self, skill: Skill):
-        if self.current_hp <= 0:
-            self.status = "Dead"
-            print(f"{self.name} is {self.status}, он не {skill.influence_str}")
-            return 
         skill.influence(self)
         self.info() # self не надо передавать внутри метода класса
 
